@@ -23,7 +23,8 @@ export function renderPostsPageComponent({ appEl }) {
     }
   })
 
-  const appHtml = appPosts.map((element, index) => { return `
+  const appHtml = appPosts.map((element, index) => {
+    return `
     <div class="page-container">
       <div class="header-container"></div>
       <ul class="posts">
@@ -53,7 +54,7 @@ export function renderPostsPageComponent({ appEl }) {
         </li >                  
       </ul >
     </div > `
-  }).join('') ;
+  }).join('');
 
   appEl.innerHTML = appHtml;
 

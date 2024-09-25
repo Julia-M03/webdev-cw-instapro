@@ -21,7 +21,12 @@ export let user = getUserFromLocalStorage();
 export let page = null;
 export let posts = [];
 
-export const getToken = () => {      
+export const updatePost = (postId, post) => {
+  const idx = posts.findIndex((el) => el.id === postId);
+  posts[idx] = post;
+}
+
+export const getToken = () => {
   const token = user ? `Bearer ${user.token}` : undefined;
   return token;
 };

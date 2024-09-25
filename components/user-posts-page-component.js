@@ -4,17 +4,18 @@ import { posts, goToPage } from "../index.js";
 import { likeEventListener } from "./like-component.js";
 import { formatDistanceToNow } from "date-fns";
 import { ru } from "date-fns/locale";
+import { sanitize } from "../helpers.js";
 
 export function renderUserPostsPageComponent({ appEl }) {
 
   const appPosts = posts.map((post) => {
     return {
       userImageUrl: post.user.imageUrl,
-      userName: post.user.name, //?
+      userName: sanitize(post.user.name),
       userId: post.user.id,
       imageUrl: post.imageUrl,
-      description: post.description,
-      userLogin: post.user.login,
+      description: sanitize(post.description),
+      userLogin: sanitize(post.user.login),
       date: formatDistanceToNow(new Date(post.createdAt), { locale: ru }),
       likes: post.likes,
       isLiked: post.isLiked,
@@ -29,7 +30,7 @@ export function renderUserPostsPageComponent({ appEl }) {
           <ul class="posts">
             <li class="post" data-index=${index}>
               <div class="post-header" data-user-id="${element.userId}">
-                  <img src="${element.userImageUrl}" class="post-header__user-image">
+                  <img src="${element.userImageUrl}" class="post-header__user-image">   
                   <p class="post-header__user-name">${element.userName}</p>
               </div>
               <div class="post-image-container">
@@ -53,7 +54,7 @@ export function renderUserPostsPageComponent({ appEl }) {
             </li>                  
           </ul>
         </div>`
-  });
+  }).join('');
 
   appEl.innerHTML = postsHtml;
 

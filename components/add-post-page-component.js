@@ -29,10 +29,8 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
                   style="display:none"
                 />
                 Выберите фото
-            </label>
-            `
+            </label>`
       }
-
         </div>
      </div>
     <label>
@@ -42,8 +40,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
       <button class="button" id="add-button">Добавить</button>
       </div>
       </div>
-    </div>
-`;
+    </div>`;
 
     appEl.innerHTML = appHtml;
 

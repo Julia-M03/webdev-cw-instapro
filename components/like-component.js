@@ -1,4 +1,4 @@
-import { getToken, renderApp, posts } from "../index.js";
+import { getToken, renderApp, posts, updatePost } from "../index.js";
 import { setLike, removeLike } from "../api.js";
 
 export const likeEventListener = () => {
@@ -9,24 +9,17 @@ export const likeEventListener = () => {
             event.stopPropagation();
             const postId = likeButton.dataset.postId;
             const index = likeButton.dataset.index;
+            const actionLike = posts[index].isLiked ? removeLike : setLike;
 
-            if (posts[index].isLiked) {
-                removeLike({ token: getToken(), postId })
-                    .then(() => {
-                        posts[index].isLiked = false;
-                    })
-                    .then(() => {
-                        renderApp();
-                    })
-            } else {
-                setLike({ token: getToken(), postId })
-                    .then(() => {
-                        posts[index].isLiked = true;
-                    })
-                    .then(() => {
-                        renderApp();
-                    })
-            }
+            actionLike({ token: getToken(), postId })
+                .then((newPost) => {
+                    console.log(newPost)
+                    //   posts[index].isLiked = false;
+                    updatePost(postId, newPost.post)
+                })
+                .then(() => {
+                    renderApp();
+                })
         });
     });
 };
