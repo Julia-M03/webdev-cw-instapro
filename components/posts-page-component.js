@@ -12,7 +12,7 @@ export function renderPostsPageComponent({ appEl }) {
     return {
       userImageUrl: post.user.imageUrl,
       userName: sanitize(post.user.name),
-      userId: post.user.id,
+      userId: sanitize(post.user.id),
       imageUrl: post.imageUrl,
       description: sanitize(post.description),
       userLogin: sanitize(post.user.login),
@@ -41,7 +41,7 @@ export function renderPostsPageComponent({ appEl }) {
               <img src="${element.isLiked ? `./assets/images/like-active.svg` : `./assets/images/like-not-active.svg`}">
             </button>
             <p class="post-likes-text">
-            Нравится: <strong>${element.likes.length >= 1 ? element.likes[0].name : '0'}</strong> ${(element.likes.length - 1) > 0 ? 'и ещё' + ' ' + (element.likes.length - 1) : ''}
+            Нравится: <strong>${element.likes.length >= 1 ? sanitize(element.likes[0].name) : '0'}</strong> ${(element.likes.length - 1) > 0 ? 'и ещё' + ' ' + (element.likes.length - 1) : ''}
             </p >
           </div >
           <p class="post-text">

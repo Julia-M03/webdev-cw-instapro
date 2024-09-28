@@ -14,7 +14,7 @@ export function removeUserFromLocalStorage(user) {
   window.localStorage.removeItem("user");
 }
 
-export function sanitize(str) { // ?
+export function sanitize(str) { 
   return str.replaceAll("&", "&amp")
     .replaceAll('<', '&lt')
     .replaceAll(">", "&gt")
